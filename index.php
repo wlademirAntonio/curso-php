@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include 'servicos/mensagem.php';
 
 ?>
 
@@ -19,7 +19,11 @@ session_start();
     <p>FORMULÁRIO PARA INSCRIÇÃO DE COMPETIDORES</p>
 
     <?php
-    $mensagemDeErro = isset($_SESSION['mensagem de erro']) ? $_SESSION['mensagem de erro'] : '';
+    $mensagemDeSucesso = getMensagemSucesso();
+    if (!empty($mensagemDeSucesso)) {
+        echo $mensagemDeSucesso;
+    }
+    $mensagemDeErro = getMensagemErro();
     if (!empty($mensagemDeErro)) {
         echo $mensagemDeErro;
     }
@@ -30,13 +34,6 @@ session_start();
         <p>Sua idade: <input type="text" name="idade"> </p>
         <p> <input type="submit"> </p>
     </form>
-
-    <?php
-    $mensagemDeSucesso = isset($_SESSION['mensagem de sucesso']) ? $_SESSION['mensagem de sucesso'] : '';
-    if (!empty($mensagemDeSucesso)) {
-        echo $mensagemDeSucesso;
-    }
-    ?>
 
 </body>
 
